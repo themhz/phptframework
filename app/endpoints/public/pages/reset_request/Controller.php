@@ -48,8 +48,19 @@ class Controller
         $ins = $pdo->prepare('INSERT INTO password_resets (email, token, expires_at) VALUES (:email, :token, :expires)');
         $ins->execute([':email' => $email, ':token' => $token, ':expires' => $expires]);
 
-        // In a real app send an email. For now show a link to copy.
-        $resetLink = '/reset?token=' . $token;
+        // send email via Mailer
+        try {
+            $resetLink = 'https://' . ($_SERVER['HTTP_HOST'] ?? 'localhost') . '/reset?token=' . $token;
+            $mailer = new \App\Components\Mailer();
+            $subject = 'Reset your password';
+            $body = "<p>To reset your password click the link below (expires in 1 hour):</p><p><a href=\"$resetLink\">$resetLink</a></p>";
+            $sent = $mailer->send($email, $subject, $body);
+            if (!$sent) {
+                error_log('Failed to send reset email to ' . $email);
+            }
+        } catch (\Throwable $e) {
+            error_log('Mailer exception: ' . $e->getMessage());
+        }
 
         $content = dirname(__FILE__) . '/reset_request_sent.php';
         include $templatePath;

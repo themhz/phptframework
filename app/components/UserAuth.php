@@ -3,6 +3,7 @@
 namespace App\Components;
 use App\Models\Users;
 use App\Models\Settings;
+use App\Components\Mailer;
 
 class UserAuth {
     private $db;
@@ -14,6 +15,19 @@ class UserAuth {
     public function register($user) {
         $user->password = password_hash($user->password, PASSWORD_DEFAULT);
         $result = $user->insert();
+
+        if ($result) {
+            // send welcome email if SMTP configured
+            try {
+                $mailer = new Mailer();
+                $subject = 'Welcome to phptframework';
+                $body = "<p>Hello,</p><p>Thank you for registering. You can login at <a href='http://" . ($_SERVER['HTTP_HOST'] ?? 'localhost') . "/login'>Login</a>.</p>";
+                $mailer->send($user->email, $subject, $body);
+            } catch (\Throwable $e) {
+                error_log('Mailer error: ' . $e->getMessage());
+            }
+        }
+
         return $result;
     }
 
