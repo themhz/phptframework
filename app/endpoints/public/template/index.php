@@ -19,6 +19,8 @@
     <nav class="nav" style="margin-left:auto">
       <a href="/">Home</a>
       <a href="/blog">Blog</a>
+      <a href="/register">Register</a>
+      <a href="/login">Login</a>
       <a href="/admin/posts">Admin</a>
     </nav>
   </header>

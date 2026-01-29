@@ -19,6 +19,7 @@
         </label>
     </div>
     <div style="margin-top: 8px;">
-        <button type="submit">Login</button>
+        <button type="submit" class="btn">Login</button>
     </div>
 </form>
+<p style="margin-top:8px;"><a href="/reset-request">Forgot password?</a> • <a href="/register">Register</a></p>
