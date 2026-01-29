@@ -1,0 +1,63 @@
+/* Neon dark theme - orange accent */
+:root{
+  --bg:#07060a;
+  --panel:#0f1115;
+  --muted:#9aa3ad;
+  --accent:#ff7a18; /* neon orange */
+  --accent-strong:#ff8f32;
+  --glass: rgba(255,255,255,0.03);
+  --glow: 0 0 14px rgba(255,122,24,0.18), 0 0 28px rgba(255,122,24,0.08);
+  --radius:12px;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: "Segoe UI", system-ui, -apple-system, 'Helvetica Neue', Arial;
+  background: radial-gradient(1200px 600px at 10% 10%, #0b0a0f 0%, var(--bg) 20%), var(--bg);
+  color:#e6eef6;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+.site-header{
+  display:flex;align-items:center;gap:16px;padding:28px 36px;border-bottom:1px solid rgba(255,255,255,0.03);
+}
+.brand{display:flex;flex-direction:column}
+.brand .title{font-weight:700;letter-spacing:0.6px;color:var(--accent);font-size:20px;text-shadow:var(--glow)}
+.brand .tag{font-size:12px;color:var(--muted);margin-top:2px}
+
+.container{max-width:1100px;margin:28px auto;padding:24px}
+
+.hero{
+  background: linear-gradient(180deg, rgba(255,122,24,0.06), transparent);
+  border-radius:var(--radius);
+  padding:20px;
+  box-shadow: var(--glow);
+  border:1px solid rgba(255,122,24,0.06);
+}
+
+h1{margin:0 0 8px 0;font-size:28px;color:#fff}
+p.lead{color:var(--muted);margin:0 0 12px}
+
+.card{background:var(--panel);border-radius:10px;padding:16px;margin-top:18px;border:1px solid rgba(255,255,255,0.03)}
+
+.nav{display:flex;gap:12px}
+.nav a{color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:8px}
+.nav a:hover{color:var(--accent);text-shadow:0 0 8px rgba(255,122,24,0.1)}
+
+.btn{display:inline-block;padding:8px 14px;border-radius:8px;background:linear-gradient(180deg,var(--accent),var(--accent-strong));color:#0b0a0f;font-weight:700;text-decoration:none;box-shadow:var(--glow);border:none}
+.btn.secondary{background:transparent;color:var(--muted);border:1px solid rgba(255,255,255,0.04)}
+
+/* Forms / tables */
+input[type="text"],input[type="email"],input[type="password"],textarea,select{background:var(--glass);border:1px solid rgba(255,255,255,0.03);padding:10px;border-radius:8px;color:var(--muted);width:100%;}
+table{width:100%;border-collapse:collapse;color:var(--muted)}
+th,td{padding:10px;border-bottom:1px solid rgba(255,255,255,0.03)}
+th{color:var(--muted);font-weight:600}
+
+/* Make code blocks stand out */
+pre,code{background:#0b0b0f;padding:8px;border-radius:8px;color:#ffd8b8;overflow:auto}
+
+/* Responsive */
+@media (max-width:720px){.site-header{flex-direction:column;align-items:flex-start}.container{padding:16px;margin:16px}}
