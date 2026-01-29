@@ -1,0 +1,8 @@
+vendor/
+node_modules/
+.env
+app/.env
+*.log
+*.tmp
+*.cache
+phptframework-postpatch.patch
