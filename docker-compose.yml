@@ -6,6 +6,9 @@ services:
       context: ./
       dockerfile: Dockerfile
     container_name: phptframework-web
+    volumes:
+      - ./app:/var/www/html:cached
+      - ./app/.env:/var/www/html/.env:ro
     ports:
       - "80:80"
     depends_on:
